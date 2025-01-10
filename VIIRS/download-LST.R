@@ -1,7 +1,8 @@
 library(terra)
 library(luna)
 
-credentials <- readRDS("credentials.rds")
+credentials <- readRDS("../credentials.rds")
+credentials <- credentials[credentials$service == "NASA", ]
 
 if (!interactive()) {
   args <- commandArgs(trailingOnly = TRUE)
@@ -41,8 +42,8 @@ files <- getNASA(
   aoi = roi,
   path = outdir,
   version = '002',
-  username = credentials["username"],
-  password = credentials["password"],
+  username = credentials[["username"]],
+  password = credentials[["password"]],
   download = TRUE,
   overwrite = TRUE
 )

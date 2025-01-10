@@ -48,6 +48,9 @@ for (year in unique(dates[, "year"])) {
       lapply(rast) |> 
       sprc() |> 
       merge()
+
+    r$LST_Day_1km <- r$LST_Day_1km * 0.02 - 273.15
+
     writeRaster(
       r,
       file.path(datadir, paste0(year, "-", day, ".tif")), 
